@@ -1,0 +1,18 @@
+<Form class="mx-auto" style="width: 200px;padding-top: 12rem!important;" [formGroup]="m2mForm" (ngSubmit)="linkM2M()">
+    <label>Multiplex</label><select class="custom-select" (change)="setScreens()" formControlName="multiplexName">
+        <option value="" disabled>Choose a Multiplex</option>
+        <option *ngFor="let multiplex of multiplexes" [ngValue]="multiplex">{{multiplex.name}}</option>
+    </select>
+    <label *ngIf="screens">Screens</label><select *ngIf="screens" class="custom-select" formControlName="screenNumber">
+        <option value="" disabled>Choose a screen</option>
+        <option *ngFor="let screen of screens" [ngValue]="screen">{{screen}}</option>
+    </select>
+    <label>Movie</label><select class="custom-select" formControlName="movieName">
+        <option value="" disabled>Choose a Movie</option>
+        <option *ngFor="let movie of movies" [ngValue]="movie">{{movie.name}}</option>
+    </select>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Link</button>
+        <!-- [disabled]="!m2mForm.valid" -->
+    </div>
+</Form>

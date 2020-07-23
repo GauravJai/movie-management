@@ -1,0 +1,32 @@
+<h2>Add Movie</h2>
+<form [formGroup]="movieForm" (ngSubmit)="saveMovie()" #f>
+  <div class="form-group">
+    <label for="">Name</label>
+    <input type="text" class="form-control" formControlName="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="">Category</label>
+    <input type="text" class="form-control" formControlName="category" required />
+  </div>
+
+  <div class="form-group">
+    <label for="">Directed by</label>
+    <input type="text" class="form-control" formControlName="director" required />
+  </div>
+
+  <div class="form-group">
+    <label for="">Produced by</label>
+    <input type="text" class="form-control" formControlName="producer" required />
+  </div>
+
+  <div class="form-group">
+    <label for="">Released on</label>
+    <input type="date" class="form-control" formControlName="releaseDate" required />
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary"
+      [disabled]="!movieForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+  </div>
+</form>

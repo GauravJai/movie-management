@@ -1,0 +1,5 @@
+<div ng-show="showForm" class="mx-auto mt-5" style="width: 200px;">
+    <multiplex-form [editMode]="editMode" (multiplex)="submitMultiplex($event)"></multiplex-form>
+</div>
+<input type="button" *ngIf="!showForm" (click)="toggleAddForm()" class="btn btn-primary mx-auto mt-5" value="Add Multiplex">
+<multiplex-list (multiplex_delete)="deleteMultiplex($event)" (multiplex_update)="receiveMultiplex($event)" [multiplexes]="multiplexes"></multiplex-list>

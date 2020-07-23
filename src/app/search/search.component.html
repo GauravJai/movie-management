@@ -1,0 +1,22 @@
+<!-- <div class="mx-auto " style="width: 200px; margin-top: 10%;">
+    <form class="form-inline" *ngIf="true">
+        <input class="form-control mr-sm-2" type="search" placeholder="Movie" aria-label="Search">
+        <input class="btn btn-outline-success my-2 my-sm-0" type="radio" value="Search"/>
+    </form>
+</div> -->
+<div class="mx-auto " style="width: 200px; margin-top: 10%;">
+    <h1>Search</h1>
+    <label><input type="radio" value="movie" [checked]="btnValue === 'movie'" (change)="searchPath($event)"> Movie</label>&nbsp;&nbsp;
+    <label><input type="radio" value="multiplex" [checked]="btnValue === 'multiplex'" (change)="searchPath($event)"> Multiplex</label><br/>
+    <!-- <label>Multiplex</label><input type="radio" value="multiplex" (change)="searchMultiplex($event)" > -->
+    <input (keyup)="searchTerm$.next($event.target.value)"> 
+
+    <ul *ngIf="results">
+        <li *ngFor="let result of results">
+            <span>{{result.name}}: ({{result.category}})</span>
+           <!--  <a href="{{ result.latest }}" target="_blank">
+                {{ result.name }}
+            </a> -->
+        </li>
+    </ul>
+</div>

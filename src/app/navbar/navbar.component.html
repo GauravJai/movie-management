@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: #e3f2fd;">
+    <div class="container">
+        <a class="navbar-brand" href="#">{{name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-right" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/search']"  routerLinkActive="active">search
+                        <!-- <span class="sr-only">(current)</span> -->
+                    </a>
+                </li>
+                <li  class="nav-item">
+                    <a class="nav-link" *ngIf="isAdmin" [routerLink]="['/movie']">Movie</a>
+                </li>
+                <li  class="nav-item">
+                    <a class="nav-link" *ngIf="isAdmin" [routerLink]="['/multiplex']">Multiplex</a>
+                </li>
+                <li  class="nav-item">
+                    <a class="nav-link" *ngIf="isAdmin" [routerLink]="['/m2m']">Link M2M</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/search']">Search</a>
+                </li> -->
+                <li *ngIf="currentUser" class="nav-item" style="cursor: pointer;">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+                <li *ngIf="!currentUser" class="nav-item" style="cursor: pointer;">
+                    <a class="nav-link" [routerLink]="['/login']">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
