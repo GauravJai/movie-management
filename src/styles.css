@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+form:before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgb(227 242 253);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.m-5 {
+    margin-top: 7rem!important;
+  }

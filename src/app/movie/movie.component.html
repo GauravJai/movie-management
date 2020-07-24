@@ -1,4 +1,4 @@
-<div *ngIf="showForm" class="mx-auto mt-5" style="width: 200px;">
+<div *ngIf="showForm" class="mx-auto m-5">
   <movie-form [editMode]="editMode" (movieOutput)="onMovieFormSubmit($event)"></movie-form>
 </div>
 <input type="button" *ngIf="!showForm" (click)="toggleAddForm()" class="btn btn-primary mx-auto mt-5" value="Add Movie">

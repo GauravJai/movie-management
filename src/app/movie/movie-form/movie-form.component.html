@@ -1,32 +1,52 @@
-<h2>Add Movie</h2>
-<form [formGroup]="movieForm" (ngSubmit)="saveMovie()" #f>
-  <div class="form-group">
-    <label for="">Name</label>
-    <input type="text" class="form-control" formControlName="name" required />
-  </div>
+<div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
+  <h2 style="text-align: center;">Add Movie</h2>
+  <form class="justify-content-center" [formGroup]="movieForm" (ngSubmit)="saveMovie()">
+    <div class="form-group">
+      <label for="">Name</label>
+      <input type="text" class="form-control" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"  required />
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Movie name is required</div>
+        <div *ngIf="f.name.errors.minlength">Movie name must be at least 4 characters</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="">Category</label>
-    <input type="text" class="form-control" formControlName="category" required />
-  </div>
+    <div class="form-group">
+      <label for="">Category</label>
+      <input type="text" class="form-control" formControlName="category" [ngClass]="{ 'is-invalid': submitted && f.category.errors }" required />
+      <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+        <div *ngIf="f.category.errors.required">Category is required</div>
+        <div *ngIf="f.category.errors.minlength">Category must be at least 4 characters</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="">Directed by</label>
-    <input type="text" class="form-control" formControlName="director" required />
-  </div>
+    <div class="form-group">
+      <label for="">Directed by</label>
+      <input type="text" class="form-control" formControlName="director" [ngClass]="{ 'is-invalid': submitted && f.director.errors }" required />
+      <div *ngIf="submitted && f.director.errors" class="invalid-feedback">
+        <div *ngIf="f.director.errors.required">Director name is required</div>
+        <div *ngIf="f.director.errors.minlength">Director name must be at least 4 characters</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="">Produced by</label>
-    <input type="text" class="form-control" formControlName="producer" required />
-  </div>
+    <div class="form-group">
+      <label for="">Produced by</label>
+      <input type="text" class="form-control" formControlName="producer" [ngClass]="{ 'is-invalid': submitted && f.producer.errors }" required />
+      <div *ngIf="submitted && f.producer.errors" class="invalid-feedback">
+        <div *ngIf="f.producer.errors.required">Producer name is required</div>
+        <div *ngIf="f.producer.errors.minlength">Producer name must be at least 4 characters</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <label for="">Released on</label>
-    <input type="date" class="form-control" formControlName="releaseDate" required />
-  </div>
+    <div class="form-group">
+      <label for="">Released on</label>
+      <input type="date" class="form-control" formControlName="releaseDate" [ngClass]="{ 'is-invalid': submitted && f.releaseDate.errors }" required />
+      <div *ngIf="submitted && f.releaseDate.errors" class="invalid-feedback">
+        <div *ngIf="f.releaseDate.errors.required">Release Date is required</div>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary"
-      [disabled]="!movieForm.valid">{{ editMode ? 'Update' : 'Add' }}</button>
-  </div>
-</form>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" >{{ editMode ? 'Update' : 'Add' }}</button> <!-- [disabled]="!movieForm.valid" -->
+    </div>
+  </form>
+</div>

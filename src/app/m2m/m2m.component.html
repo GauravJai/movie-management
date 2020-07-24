@@ -1,18 +1,22 @@
-<Form class="mx-auto" style="width: 200px;padding-top: 12rem!important;" [formGroup]="m2mForm" (ngSubmit)="linkM2M()">
-    <label>Multiplex</label><select class="custom-select" (change)="setScreens()" formControlName="multiplexName">
-        <option value="" disabled>Choose a Multiplex</option>
-        <option *ngFor="let multiplex of multiplexes" [ngValue]="multiplex">{{multiplex.name}}</option>
-    </select>
-    <label *ngIf="screens">Screens</label><select *ngIf="screens" class="custom-select" formControlName="screenNumber">
-        <option value="" disabled>Choose a screen</option>
-        <option *ngFor="let screen of screens" [ngValue]="screen">{{screen}}</option>
-    </select>
-    <label>Movie</label><select class="custom-select" formControlName="movieName">
-        <option value="" disabled>Choose a Movie</option>
-        <option *ngFor="let movie of movies" [ngValue]="movie">{{movie.name}}</option>
-    </select>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Link</button>
-        <!-- [disabled]="!m2mForm.valid" -->
-    </div>
-</Form>
+<h2 style="margin-top: 14%; text-align: center;">Link Movie to a Multiplex</h2>
+<div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+    <Form class="justify-content-center" [formGroup]="m2mForm" (ngSubmit)="linkM2M()">
+        <label>Multiplex</label><select class="custom-select" (change)="setScreens()" formControlName="multiplexName">
+            <option value="" disabled>Choose a Multiplex</option>
+            <option *ngFor="let multiplex of multiplexes" [ngValue]="multiplex">{{multiplex.name}}</option>
+        </select>
+        <label *ngIf="screens">Screens</label><select *ngIf="screens" class="custom-select"
+            formControlName="screenNumber">
+            <option value="" disabled>Choose a screen</option>
+            <option *ngFor="let screen of screens" [ngValue]="screen">{{screen}}</option>
+        </select>
+        <label>Movie</label><select class="custom-select" formControlName="movieName">
+            <option value="" disabled>Choose a Movie</option>
+            <option *ngFor="let movie of movies" [ngValue]="movie">{{movie.name}}</option>
+        </select><br/><br/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Link</button>
+            <!-- [disabled]="!m2mForm.valid" -->
+        </div>
+    </Form>
+</div>

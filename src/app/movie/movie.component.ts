@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Movie } from '../model/movie';
 import { MovieService } from '../service/movie.service';
 import { MovieFormComponent } from './movie-form/movie-form.component';
+import { AlertService } from '../service/alert.service';
 
 @Component({
   selector: 'app-movie',
@@ -15,7 +16,7 @@ export class MovieComponent implements OnInit {
   showForm: boolean;
   @ViewChild(MovieFormComponent, { static: false }) formComponent: MovieFormComponent;
 
-  constructor(private movieService: MovieService) {
+  constructor(private movieService: MovieService, private alertService: AlertService) {
     this.editMode = false;
     this.showForm = false;
   }
@@ -37,11 +38,12 @@ export class MovieComponent implements OnInit {
   addMovie(movie: Movie) {
     this.movieService.addNewMovie(movie).subscribe(
       (response: Movie) => {
-        console.log(response);
+        //console.log(response);
         this.movies.push(response);
         this.showForm = false;
+        this.alertService.success("Movie '" + response.name + "' has been added successfully");
       },
-      error => console.log(error)
+      error => this.alertService.error("There is an error : "+error)
     );
   }
 
@@ -66,8 +68,9 @@ export class MovieComponent implements OnInit {
         this.editMode = false;
         this.showForm = false;
         this.formComponent.movieForm.reset();
+        this.alertService.success("Movie '" + response.name + "' has been updated successfully");
       },
-      error => console.log(error)
+      error => this.alertService.error("There is an error : "+error)
     );
   }
 
@@ -77,9 +80,10 @@ export class MovieComponent implements OnInit {
         var index = this.movies.map(movie => {
           return movie.id;
         }).indexOf(id);
+        this.alertService.success("Movie '" + this.movies[index].name + "' has been deleted successfully");
         this.movies.splice(index, 1);
       },
-      error => console.log(error)
+      error => this.alertService.error("There is an error : "+error)
     );
   }
 

@@ -6,6 +6,7 @@ import { Multiplex } from '../model/multiplex';
 import { MultiplexService } from '../service/multiplex.service';
 import { Constants } from '../common/Constants';
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from '../service/alert.service';
 
 @Component({
   selector: 'app-m2m',
@@ -18,7 +19,7 @@ export class M2mComponent implements OnInit {
   multiplexes: Array<Multiplex>;
   screens: Array<number>;
 
-  constructor(private formbuilder: FormBuilder, private movieService: MovieService, private multiplexService: MultiplexService, private http: HttpClient) {
+  constructor(private formbuilder: FormBuilder, private movieService: MovieService, private multiplexService: MultiplexService, private http: HttpClient, private alertService: AlertService) {
     this.movieService.getAllMovie().subscribe((response: any) => {
       this.movies = response;
     });
@@ -66,11 +67,10 @@ export class M2mComponent implements OnInit {
 
   linkM2M() {
     this.addNewMovie2Multiplex().subscribe(response => {
-      console.log(response);
+      this.alertService.success("Movie '" + this.multiplexName.value.name + "' is assigned to multiplex '" + this.multiplexName.value.name + "' successfully.")
+      this.m2mForm.reset();
     },
-    error => {
-      console.log(error);
-    }
+      error => this.alertService.error("There is an error : " + error)
     );
 
   }

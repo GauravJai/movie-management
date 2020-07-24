@@ -14,6 +14,7 @@ export class MultiplexFormComponent implements OnInit {
   @Output()
   multiplex: EventEmitter<Multiplex>;
   multiplexForm: FormGroup;
+  submitted = false;
   constructor(private formBuilder: FormBuilder) {
     this.multiplex = new EventEmitter();
    }
@@ -24,13 +25,17 @@ export class MultiplexFormComponent implements OnInit {
   ngOnInit(): void {
     this.multiplexForm = this.formBuilder.group({
       id: '',
-      name: ['',Validators.minLength(3)],
-      address: [''],
-      screens: ['']
+      name: ['',Validators.minLength(4)],
+      address: ['', Validators.minLength(10)],
+      screens: ['', Validators.max(20)]
     });
   }
 
   saveMultiplex() {
+    this.submitted = true;
+    if (this.multiplexForm.invalid) {
+      return;
+    }
     let multiplex = new Multiplex(this.f.id.value, this.f.name.value, this.f.address.value, this.f.screens.value);
     this.multiplex.emit(multiplex);
   }
