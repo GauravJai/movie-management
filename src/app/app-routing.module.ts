@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { RegisterComponent } from './register/register.component';
 import { M2mComponent } from './m2m/m2m.component';
 import { Role } from './model/role';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: "multiplex", component: MultiplexComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   {path: "m2m", component: M2mComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] }},
   /* {path: "search",component: SearchComponent}, */
-  { path: "", component: AppComponent, canActivate: [AuthGuard] },
+  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   //{ path: '', redirectTo: '/login', pathMatch: 'full'}
   { path: '**', redirectTo: '' }
 

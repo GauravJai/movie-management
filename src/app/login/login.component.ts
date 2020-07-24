@@ -5,8 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../service/alert.service';
 import { AuthenticationService } from '../service/authentication.service';
 
-//import { AlertService, AuthenticationService } from '@/_services';
-
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -59,8 +57,10 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
+                (data) => {
                     this.router.navigate([this.returnUrl]);
+                    //console.log(data);
+                    this.alertService.success(this.authenticationService.currentUserValue.username+" is logged in successfully!!");
                 },
                 error => {
                     this.alertService.error(error);

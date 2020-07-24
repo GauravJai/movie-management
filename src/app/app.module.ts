@@ -19,6 +19,9 @@ import { MultiplexListComponent } from './multiplex/multiplex-list/multiplex-lis
 import { RegisterComponent } from './register/register.component';
 import { M2mComponent } from './m2m/m2m.component';
 import { HttpInterceptorService } from './service/http-interceptor.service';
+import { AlertComponent } from './directives/alert.component';
+import { HomeComponent } from './home/home.component';
+import { AlertModule } from './alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
     MultiplexFormComponent,
     MultiplexListComponent,
     RegisterComponent,
-    M2mComponent
+    M2mComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule
   ],
   providers: [ 
     {

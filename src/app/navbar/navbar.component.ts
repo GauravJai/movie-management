@@ -3,6 +3,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { Role } from '../model/role';
+import { AlertService } from '../service/alert.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,14 +17,12 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
   currentUser: User;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, private alertService: AlertService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit(): void {
     this.name = "Movie Portal";
-    //this.isAdmin = this.authenticationService.isAdmin;
-    //this.isAdmin = sessionStorage.getItem('isAdmin') === "true" ? true : false;
     this.isLoggedIn = sessionStorage.getItem('currentUser') ? true : false;
   }
 
@@ -33,8 +32,9 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-
     this.router.navigate(['/login']);
+    //this.alertService.clear();
+    this.alertService.success("Logged Out Successfully !!");
   }
 
 }

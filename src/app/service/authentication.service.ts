@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../model/user';
 import { Constants } from '../common/Constants';
+import { AlertService } from './alert.service';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertService: AlertService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -25,15 +26,10 @@ export class AuthenticationService {
   login(username: string, password: string) { /* /authenticate */
     let authToken = "Basic " + window.btoa(username + ":" + password);
 
-    // header to sent with request
     let headers = new HttpHeaders({
       Authorization: authToken,
       responseType: "text"
     });
-
-    //headers = headers.append('Authorization', authToken).append("responseType", "text");
-
-    //let params = new HttpParams().set("userId",username);
 
     return this.http.get<any>(Constants.loginUrl + "/login/" + username, { headers: headers })
       .pipe(map(user => {
@@ -75,10 +71,8 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user from local storage and set current user to null
     sessionStorage.removeItem('currentUser');
     sessionStorage.removeItem('token');
-    //sessionStorage.removeItem('isAdmin');
     this.currentUserSubject.next(null);
   }
 }
